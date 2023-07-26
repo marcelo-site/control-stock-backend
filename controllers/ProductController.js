@@ -141,10 +141,8 @@ class ProductController {
     }
 
     static async addColorstock(req, res) {
-        console.log(req.body)
         const productId = req.params.id
         const { stock, lojaId, sizeId, colorId } = req.body
-        console.log(typeof lojaId)
         if (sizeId === 'undefined') {
             return res.status(422).json({ message: "Tamanho é obrigatório é obrigatório!" })
         }
