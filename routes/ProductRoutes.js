@@ -12,13 +12,15 @@ ProductRoutes.patch('/edit-stock/:id', verifyToken,
     ProductController.changeQty)
 ProductRoutes.delete('/delete/:id',verifyAdmin,ProductController.delete)
 ProductRoutes.post('/register', imageUpload.single('image'), ProductController.register)
-ProductRoutes.patch('/edit/:id', imageUpload.single('image'), verifyAdmin,
+ProductRoutes.patch('/edit/:id', imageUpload.single('image'), 
+// verifyAdmin,
+verifyToken,
     ProductController.editProduct)
 
 ProductRoutes.get('/unique-all/:id', verifyToken, ProductController.productByIdAll)
 
 ProductRoutes.get('/:id', verifyToken, /* verifyAdmin, */ ProductController.productById)
 ProductRoutes.post('/add-stock/:id', verifyToken, ProductController.addColorstock)
-ProductRoutes.post('/create-color', verifyAdmin, ProductController.createColor)
+ProductRoutes.post('/create-color', /*verifyAdmin*/ verifyToken, ProductController.createColor)
 
 export default ProductRoutes

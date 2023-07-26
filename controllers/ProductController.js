@@ -11,7 +11,6 @@ import getUserByToken from "../helpers/get-user-token.js";
 
 class ProductController {
     static async getAll(req, res) {
-        console.log(1)
         const products = await Product.findAll({
             order: [['createdAt', 'DESC']],
             raw: true
@@ -46,24 +45,6 @@ class ProductController {
                     }
                 }, raw: true
             })
-            const idSizes = size.map(el => el.id)
-           
-            const ad = stock.reduce((acc, cur) =>
-             {
-                if(cur['product_size_color.size_color.sizeId'] === 3) {
-                    console.log(cur.stock)
-                    return parseInt(acc) + parseInt(cur.stock)
-                }
-             }, 0 )
-            // const ad = stock.filter(filterStock(f['product_size_color.size_color.sizeId'], 1))
-
-            console.log(ad)
-             
-            function filterStock (param1,param2 ) {
-                if(param1 === param2) {
-                    return param1
-                }
-             }
             const stockP = stock.map((el, i) => {
                 if (el['product_size_color.size_color.sizeId'] == 1) {
                     return parseInt(el.stock)
@@ -71,6 +52,7 @@ class ProductController {
                     return 0
                 }
             }).reduce((acc, cur) => parseInt(acc) + parseInt(cur), 0)
+
             const stockM = stock.map((el, i) => {
                 if (el['product_size_color.size_color.sizeId'] === 2) {
                     return parseInt(el.stock)
@@ -78,6 +60,7 @@ class ProductController {
                     return 0
                 }
             }).reduce((acc, cur) => acc + cur, 0)
+
             const stockG = stock.map((el, i) => {
                 if (el['product_size_color.size_color.sizeId'] === 3) {
                     return parseInt(el.stock)
@@ -86,7 +69,6 @@ class ProductController {
                     return 0
                 }
             }).reduce((acc, cur) => acc + cur, 0)
-            // console.log(stockP)
 
             const stocks = [stockP || 0, stockM || 0, stockG || 0]
 
