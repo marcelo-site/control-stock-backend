@@ -8,9 +8,8 @@ const app = express()
 app.use(express.json())
 
 // Solve cors
-const frontend = process.env.FRONTEND  || 'http://localhost:3000'
+const frontend = process.env.FRONTEND
 app.use(cors({ credentials: true, origin: frontend}))
-// app.use(cors({ credentials: true, origin: 'http://localhost:3000'}))
 
 // Public folders for image
 app.use(express.static('public'))
