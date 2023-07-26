@@ -9,6 +9,7 @@ app.use(express.json())
 
 // Solve cors
 const frontend = process.env.FRONTEND
+console.log(frontend)
 app.use(cors({ credentials: true, origin: frontend}))
 
 // Public folders for image
