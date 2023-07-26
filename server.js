@@ -10,7 +10,7 @@ app.use(express.json())
 // Solve cors
 const frontend = process.env.FRONTEND
 console.log(frontend)
-app.use(cors({ credentials: true, origin: 'control-stock-backend-production.up.railway.app'}))
+app.use(cors({ credentials: true, origin: 'https://control-stock-frotend-production.up.railway.app/'}))
 
 // Public folders for image
 app.use(express.static('public'))
