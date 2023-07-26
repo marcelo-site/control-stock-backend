@@ -8,7 +8,9 @@ const app = express()
 app.use(express.json())
 
 // Solve cors
-app.use(cors({ credentials: true, origin: 'http://localhost:3000'}))
+const frontend = process.env.FRONTEND  || 'http://localhost:3000'
+app.use(cors({ credentials: true, origin: frontend}))
+// app.use(cors({ credentials: true, origin: 'http://localhost:3000'}))
 
 // Public folders for image
 app.use(express.static('public'))
@@ -21,6 +23,7 @@ import Color from './models/Color.js'
 import Stock from './models/Stock.js'
 import Size from './models/Size.js'
 import SizeColor from './models/SizeColor.js'
+
 
 // Routes
 import UserRoutes from './routes/UserRoutes.js'
